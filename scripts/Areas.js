@@ -13,10 +13,8 @@ export const Areas = () => {
   for (const area of parkAreas) {
     HTML += `<li
                     data-areaid="${area.id}"
-                    data-type="park-area"
-                    >
-                    ${area.name}
-                    >`;
+                    data-type="park-area">
+                    ${area.name}`;
   }
   HTML += "</li>";
   return HTML;
