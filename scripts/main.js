@@ -1,8 +1,6 @@
-import { Areas } from "./Areas.js"
+import { Areas } from "./Areas.js";
 
-
-
-const mainContainer = document.querySelector("#container")
+const mainContainer = document.querySelector("#container");
 
 const applicationHTML = `
 <h1>Cider Falls</h1>
@@ -15,6 +13,6 @@ const applicationHTML = `
         <h2>Current Guests</h2>
         Guests
     </section>
-`
+`;
 
-mainContainer.innerHTML = applicationHTML
+mainContainer.innerHTML = applicationHTML;
