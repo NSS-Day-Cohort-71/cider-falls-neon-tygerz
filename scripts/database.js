@@ -157,6 +157,7 @@ export function getServicesForParkAreas() {
             })
             .filter(service => service !== null); // Filter out null values if any
         return {
+            parkAreaId: parkArea.id,
             parkArea: parkArea.name,
             services: services
         };

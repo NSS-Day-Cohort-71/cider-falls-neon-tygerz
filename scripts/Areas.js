@@ -1,12 +1,7 @@
-import { getAreas, getServicesForParkAreas, } from "./database.js";
+import { getAreas, getGuests, getServicesForParkAreas, } from "./database.js";
 
 
 const parkAreas = getAreas();
-
-
-// document.addEventListener("click", (event) => {
-//     if(event.target.dataset.type === "")
-// })
 
 export const Areas = () => {
   const pas = getServicesForParkAreas()
@@ -14,7 +9,7 @@ export const Areas = () => {
 
   for (const area of pas) {
     HTML += `<p
-                    data-areaid="${area.id}"
+                    data-id="${area.parkAreaId}"
                     data-type="park-area">
                     ${area.parkArea}`;
   
@@ -30,4 +25,23 @@ export const Areas = () => {
   return HTML;
 };
 
-//data-services="${area.services.join(`, `)}"
+document.addEventListener(
+  "click",
+  (clickEvent) => {
+    const itemClicked = clickEvent.target
+
+    if (itemClicked.dataset.type === "park-area") {
+      const areaId = itemClicked.dataset.id
+      const guestList = getGuests()
+      let guestCounter = 0
+      for (const guest of guestList) {
+        if (parseInt(areaId) === guest.parkAreaId) {
+          guestCounter++
+        }
+      } window.alert(`There are ${guestCounter} in this area`)
+    }
+
+  }
+)
+
+
