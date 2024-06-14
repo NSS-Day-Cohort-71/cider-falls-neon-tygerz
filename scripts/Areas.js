@@ -1,22 +1,32 @@
-import { getAreas, getServices } from "./database.js";
+import { getAreas, getServicesForParkAreas, } from "./database.js";
+
 
 const parkAreas = getAreas();
-const services = getServices();
+
 
 // document.addEventListener("click", (event) => {
 //     if(event.target.dataset.type === "")
 // })
 
 export const Areas = () => {
-  let HTML = `<ul>`;
+  const pas = getServicesForParkAreas()
+  let HTML = ``;
 
-  for (const area of parkAreas) {
-    HTML += `<li
+  for (const area of pas) {
+    HTML += `<p
                     data-areaid="${area.id}"
                     data-type="park-area">
-                    ${area.name}`;
+                    ${area.parkArea}`;
+  
+    HTML += `<ul>`
+      for (const service of area.services) {
+        HTML += `<li>${service}</li>`
+      }
+              
+            HTML += `</ul>`
+    
   }
-  HTML += "</li>";
+  HTML += "</p>";
   return HTML;
 };
 
