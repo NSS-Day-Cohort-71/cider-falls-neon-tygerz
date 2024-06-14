@@ -16,7 +16,7 @@ export const Areas = () => {
     HTML += `<p
                     data-areaid="${area.id}"
                     data-type="park-area">
-                    ${area.parkArea}`;
+                    <h3>${area.parkArea}</h3>`;
   
     HTML += `<ul>`
       for (const service of area.services) {
