@@ -8,10 +8,10 @@ export const Areas = () => {
   let HTML = ``;
 
   for (const area of pas) {
-    HTML += `<p
+    HTML += `<h3    class="area--services"
                     data-id="${area.parkAreaId}"
                     data-type="park-area">
-                    <h3>${area.parkArea}</h3>`;
+                    ${area.parkArea}</h3>`;
   
     HTML += `<ul>`
       for (const service of area.services) {

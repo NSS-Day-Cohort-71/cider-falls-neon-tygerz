@@ -1,3 +1,19 @@
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.logo {
+    margin-right: 10px;
+    width: 100px;
+    height: auto;
+}
+
+.title {
+    font-size: 2rem;
+}
 .details {
     display: flex;
     flex-direction: row;
@@ -23,4 +39,10 @@ body {
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
+}
+
+.area--services:hover {
+    transform: translateY(-5px);
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.6);
+    transition: .1s;
 }
