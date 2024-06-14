@@ -1,5 +1,5 @@
 import { Areas } from "./Areas.js";
-import { Guests } from "./Guest.js";
+import { Guests } from "./Guest.js"
 
 const mainContainer = document.querySelector("#container");
 
