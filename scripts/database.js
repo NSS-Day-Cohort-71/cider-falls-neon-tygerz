@@ -105,7 +105,32 @@ const database = {
         { id: 37, name: "Dog", parkAreaId: 1 },
         { id: 38, name: "Goliath", parkAreaId: 2 },
         { id: 39, name: "Brooklyn", parkAreaId: 3 },
-        { id: 40, name: "Lexington", parkAreaId: 1 },]
+        { id: 40, name: "Lexington", parkAreaId: 1 },],
+    parkAreaServices: [
+        { parkAreaId: 1, serviceId: 1},
+        { parkAreaId: 1, serviceId: 2},
+        { parkAreaId: 1, serviceId: 3},
+        { parkAreaId: 2, serviceId: 4},
+        { parkAreaId: 2, serviceId: 5},
+        { parkAreaId: 2, serviceId: 6},
+        { parkAreaId: 3, serviceId: 11},
+        { parkAreaId: 3, serviceId: 12},
+        { parkAreaId: 3, serviceId: 7},
+        { parkAreaId: 3, serviceId: 8},
+        { parkAreaId: 3, serviceId: 9},
+        { parkAreaId: 3, serviceId: 5},
+        { parkAreaId: 4, serviceId: 4},
+        { parkAreaId: 4, serviceId: 3},
+        { parkAreaId: 5, serviceId: 13},
+        { parkAreaId: 5, serviceId: 14},
+        { parkAreaId: 5, serviceId: 9},
+        { parkAreaId: 5, serviceId: 7},
+        { parkAreaId: 5, serviceId: 8},
+        { parkAreaId: 6, serviceId: 15},
+        { parkAreaId: 6, serviceId: 4},
+        { parkAreaId: 6, serviceId: 5},
+        { parkAreaId: 6, serviceId: 10}
+    ]
 }
 
 export const getAreas = () => {
@@ -120,4 +145,21 @@ export const getGuests = () => {
     return database.guests.map(guest => ({...guest}))
 }
 
-//rafting, conoeing, fishing, hiking, picnicking, rock climbing, lodging, parking, information, zip lines, hotel, restaurant, office park, children play areas, food vendors
+
+
+export function getServicesForParkAreas() {
+    return database.parkAreas.map(parkArea => {
+        const services = database.parkAreaServices
+            .filter(pas => pas.parkAreaId === parkArea.id)
+            .map(pas => {
+                const service = database.services.find(s => s.id === pas.serviceId);
+                return service ? service.name : null; // This is using a Ternary Operator
+            })
+            .filter(service => service !== null); // Filter out null values if any
+        return {
+            parkArea: parkArea.name,
+            services: services
+        };
+    });
+}
+

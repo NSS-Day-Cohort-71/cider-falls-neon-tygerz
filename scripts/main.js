@@ -1,4 +1,5 @@
 import { Areas } from "./Areas.js";
+import { Guests } from "./Guest.js"
 
 const mainContainer = document.querySelector("#container");
 
@@ -11,7 +12,7 @@ const applicationHTML = `
     </section>
     <section class="detail--column list details__guests">
         <h2>Current Guests</h2>
-        Guests
+        ${Guests()}
     </section>
 `;
 
