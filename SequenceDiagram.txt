@@ -1,0 +1,61 @@
+sequenceDiagram
+    participant Browser
+    participant index.html
+    participant main.js
+    participant Areas.js
+    participant Guests.js
+    participant database.js
+
+    Browser->>index.html: Load page
+    index.html->>Browser: Display static HTML structure
+    index.html->>main.js: Load main.js script
+
+    main.js->>database.js: import { getAreas, getServices, getServicesForParkAreas }
+    main.js->>Areas.js: import { Areas }
+    main.js->>Guests.js: import { Guests }
+
+    main.js->>Areas.js: Call Areas()
+    Areas.js->>database.js: getAreas()
+    database.js->>Areas.js: Return park areas data
+    Areas.js->>database.js: getServicesForParkAreas()
+    loop for each park area
+        database.js->>Areas.js: filter parkAreaServices by parkAreaId
+        loop for each park area service
+            database.js->>Areas.js: find service by serviceId
+        end
+    end
+    database.js->>Areas.js: Return services for park areas data
+    loop for each park area
+        Areas.js->>main.js: Build HTML for park area
+        loop for each service in park area
+            Areas.js->>main.js: Add service to HTML
+        end
+    end
+    Areas.js->>main.js: Return areas HTML
+
+    main.js->>Guests.js: Call Guests()
+    Guests.js->>database.js: getGuests()
+    database.js->>Guests.js: Return guests data
+    loop for each guest
+        Guests.js->>main.js: Build HTML for guest
+    end
+    Guests.js->>main.js: Return guests HTML
+
+    main.js->>Browser: Inject HTML into main container
+    Browser->>User: Display park areas, services, and guests
+
+    Browser->>User: User clicks on a service
+    Browser->>Areas.js: Event listener for service click
+    loop for each park area
+        Areas.js->>database.js: Get park areas with service
+        database.js->>Areas.js: Return park areas with service
+    end
+    Areas.js->>Browser: Display alert with park areas for service
+
+    Browser->>User: User clicks on a park area title
+    Browser->>Areas.js: Event listener for park area title click
+    loop for each guest
+        Guests.js->>database.js: Get guests for park area
+        database.js->>Guests.js: Return guests for park area
+    end
+    Browser->>User: Display alert with number of guests
