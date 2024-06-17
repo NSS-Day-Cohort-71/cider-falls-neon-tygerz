@@ -1,0 +1,13 @@
+Cider Fall's Release Notes for 1.0.0
+
+Added
+-Areas.js and Guest.js components that provide HTML for the website
+-Main.js to house the site's algorithm
+-details.css and main.css modules for formatting the site
+-Cider Falls logo
+-Background Image
+-Event Listeners for Location guest count and Services locator
+-Index for the HTML
+-Website wireframe, ERD, and Sequence diagram
+
+Closed issues 1 - 14
