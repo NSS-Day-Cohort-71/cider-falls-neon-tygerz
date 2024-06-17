@@ -153,7 +153,11 @@ export function getServicesForParkAreas() {
             .filter(pas => pas.parkAreaId === parkArea.id)
             .map(pas => {
                 const service = database.services.find(s => s.id === pas.serviceId);
-                return service ? service.name : null; // This is using a Ternary Operator
+                if (service) {
+                    return { serviceId: pas.serviceId, serviceName: service.name };
+                } else {
+                    return null;
+                }
             })
             .filter(service => service !== null); // Filter out null values if any
         return {
