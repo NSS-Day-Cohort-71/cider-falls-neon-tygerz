@@ -3,7 +3,9 @@ import { Guests } from "./Guest.js";
 import { getServices } from "./database.js";
 import { populateServicesList } from "./Services.js";
 
+
 const mainContainer = document.querySelector("#container");
+const servicesContainer = document.getElementById('services-container');
 
 const applicationHTML = `
 <header class="header-logo">
