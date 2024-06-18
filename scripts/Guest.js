@@ -18,4 +18,3 @@ export const Guests = () => {
   return html;
 };
 
-//Test

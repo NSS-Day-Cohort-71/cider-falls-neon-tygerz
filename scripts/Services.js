@@ -1,5 +1,3 @@
-import { getServicesForParkAreas } from "./database.js";
-
 export function populateServicesList(services) {
   const servicesList = document.querySelector(".services-list");
   services.forEach((service) => {

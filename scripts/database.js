@@ -180,7 +180,7 @@ export function getServicesForParkAreas() {
           return null;
         }
       })
-      .filter((service) => service !== null); // Filter out null values if any
+      .filter((service) => service !== null);
     return {
       parkAreaId: parkArea.id,
       parkArea: parkArea.name,
