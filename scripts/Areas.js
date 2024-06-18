@@ -8,14 +8,14 @@ export const Areas = () => {
   for (const area of pas) {
     HTML += `
           <section class="detail--column details__area">
-                    <h3    class="area--services"
+                    <h3 class="area--services"
                     data-id="${area.parkAreaId}"
                     data-type="park-area">
                     ${area.parkArea}</h3>`;
 
     HTML += `<ul>`;
     for (const service of area.services) {
-      HTML += `<li data-type="service" data-id="${service.serviceId}" data-name="${service.serviceName}">${service.serviceName}</li>`;
+      HTML += `<li data-type="service" data-service-id="${service.serviceId}" data-name="${service.serviceName}">${service.serviceName}</li>`;
     }
 
     HTML += `</ul></section>`;
@@ -37,20 +37,13 @@ document.addEventListener("click", (clickEvent) => {
       }
     }
     window.alert(`There are ${guestCounter} guests in this area`);
-  }
-});
-
-document.addEventListener("click", (clickEvent) => {
-  const itemClicked = clickEvent.target;
-  if (itemClicked.dataset.type === "service") {
-    const serviceId = itemClicked.dataset.id;
+  } else if (itemClicked.dataset.type === "service") {
+    const serviceId = parseInt(itemClicked.dataset.serviceId);
     let servicedArea = [];
-    let clickedService = itemClicked.dataset.name;
+    let clickedService = itemClicked.textContent;
     for (const section of pas) {
-      for (const service of section.services) {
-        if (parseInt(serviceId) === service.serviceId) {
-          servicedArea.push(section.parkArea);
-        }
+      if (section.services.some((service) => service.serviceId === serviceId)) {
+        servicedArea.push(section.parkArea);
       }
     }
 
@@ -69,9 +62,10 @@ document.addEventListener("click", (clickEvent) => {
     };
 
     let message = `${clickedService} is available in `;
-
     if (servicedArea.length > 0) {
       message += formatLocations(servicedArea);
+    } else {
+      message += "no park areas";
     }
     window.alert(message);
   }
