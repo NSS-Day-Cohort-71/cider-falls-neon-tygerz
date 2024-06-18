@@ -7,7 +7,7 @@ export const Areas = () => {
 
   for (const area of pas) {
     HTML += `
-          <section class="detail--column details__area">
+          <section class="detail--column">
                     <h3    class="area--services"
                     data-id="${area.parkAreaId}"
                     data-type="park-area">
